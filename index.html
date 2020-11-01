@@ -48,7 +48,7 @@
         var dayHours = ["9AM", "10AM", "11AM", "12AM", "1PM", "2PM", "3PM", "4PM", "5PM"];
         var divRow= $("<div>");
           // this var will be used later to check the time
-        var currentHour= date.format('h');
+        var currentHour= moment().format('hA');
         // empty array named schedule will be used to store the the todos
         var schedule=[];
         $("#currentDay").text(date.format('dddd, MMMM Do YYYY'));
@@ -73,26 +73,22 @@
             // lastly this next line of code will be used to append the input to the div element id as divRow
             $(divRow).append(p,input, button)
           }
-          // this next function will be used to check for time, this will be done to change the color of the row based on the time
-          function checkingHour () {
-            // this for loop will be used to check the dayHours
-            for (j=0;j<dayHours.length;j++) {
-              if (currentHour==dayHours[j]) {
-                $(p).addClass("present");
-              } else if (currentHour<dayHours[i]) {
-                $(p).addClass("future");
+      }
+        function timeChecker () {
+          for (var i=0; i<dayHours.length; i++) {
+            var input=$('input');
+             if (currentHour==dayHours[i]) {
+                $(input).addClass("present");
+              } else if (currentHour<=dayHours[i]) { 
+                $(input).addClass("future");
               } else {
-                ($(p).addClass("past"));
+                $(input).addClass("past");
               }
             }
           }
-        }
-     
-
-        // after this line all the functions will be called back
-        inputCreate();
-        // checkingHour();
-      })
+      inputCreate();
+      timeChecker();
+    })
         
       
       
