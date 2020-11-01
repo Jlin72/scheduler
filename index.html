@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Work Day Scheduler</title>
+  </head>
+
+  <body>
+    <header class="jumbotron">
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p id="currentDay" class="lead"></p>
+    </header>
+    <div class="container">
+      <!-- Timeblocks go here -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
+    <script>
+      // steps for how the app should work
+      // 1. when the user enters the website, different tables should appear each with a different time
+      // 2. the rows should have different colors based on what time it is
+      // 3. inside each of the rows the user can input information about their to dos
+      // 4. then the user can click a button to save their information
+      $(document).ready(function() {
+        // the variable currentTime will be used to check for the time on the pc.
+        var currentTime="";
+        var date = moment();
+        var dayHours = ["9AM", "10AM", "11AM", "12AM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+        var divRow= $("<div>");
+          // this var will be used later to check the time
+        var currentHour= date.format('h');
+        // empty array named schedule will be used to store the the todos
+        var schedule=[];
+        $("#currentDay").text(date.format('dddd, MMMM Do YYYY'));
+        $(".container").append(divRow);
+        $(divRow).addClass("class: row time-block;")
+        // this next function will be used to create the scheduler
+        function inputCreate () {
+          for (var i=0; i<dayHours.length; i++) {
+            // this next line of code will be used to create the p, input and button element
+            schedules=schedule[i];
+            var input=$("<input>");
+            var button=$("<button>");
+            var p=$('<p>');
+            // this will be used to add the dayHours to the p html element
+            $(p).text(dayHours[i]);
+            // using the loop we will create a data index for each input
+            $(input).attr("data-index", i);
+            // these next lines of code will add class to the p, input and button elements
+            $(p).addClass("row col-md-2 hour");
+            $(input).addClass("row col-md-8");
+            $(button).addClass("row saveBtn i col-md-2 time-block");
+            // lastly this next line of code will be used to append the input to the div element id as divRow
+            $(divRow).append(p,input, button)
+          }
+          // this next function will be used to check for time, this will be done to change the color of the row based on the time
+          function checkingHour () {
+            // this for loop will be used to check the dayHours
+            for (j=0;j<dayHours.length;j++) {
+              if (currentHour==dayHours[j]) {
+                $(p).addClass("present");
+              } else if (currentHour<dayHours[i]) {
+                $(p).addClass("future");
+              } else {
+                ($(p).addClass("past"));
+              }
+            }
+          }
+        }
+     
+
+        // after this line all the functions will be called back
+        inputCreate();
+        // checkingHour();
+      })
+        
+      
+      
+    </script>
+  </body>
+</html>
