@@ -42,52 +42,58 @@
       // 3. inside each of the rows the user can input information about their to dos
       // 4. then the user can click a button to save their information
       $(document).ready(function() {
-        // the variable currentTime will be used to check for the time on the pc.
-        var currentTime="";
         var date = moment();
-        var dayHours = ["9AM", "10AM", "11AM", "12AM", "1PM", "2PM", "3PM", "4PM", "5PM"];
         var divRow= $("<div>");
           // this var will be used later to check the time
-        var currentHour= moment().format('hA');
+        var currentHour= date.get('hour');
         // empty array named schedule will be used to store the the todos
         var schedule=[];
         $("#currentDay").text(date.format('dddd, MMMM Do YYYY'));
         $(".container").append(divRow);
         $(divRow).addClass("class: row time-block;")
+        
         // this next function will be used to create the scheduler
         function inputCreate () {
-          for (var i=0; i<dayHours.length; i++) {
+          for (var i=9; i<18; i+=1) {
             // this next line of code will be used to create the p, input and button element
             schedules=schedule[i];
             var input=$("<input>");
             var button=$("<button>");
+            var dayHours=date.set('hour', i);
+            var dayHoursFormat= dayHours.format('hA')
             var p=$('<p>');
             // this will be used to add the dayHours to the p html element
-            $(p).text(dayHours[i]);
+            $(p).text(dayHoursFormat);
+            $(p).attr("value", i)
             // using the loop we will create a data index for each input
             $(input).attr("data-index", i);
+            $(input).attr("type", "text");
+            $(input).attr("id", "scheduleInput");
             // these next lines of code will add class to the p, input and button elements
             $(p).addClass("row col-md-2 hour");
             $(input).addClass("row col-md-8");
             $(button).addClass("row saveBtn i col-md-2 time-block");
             // lastly this next line of code will be used to append the input to the div element id as divRow
             $(divRow).append(p,input, button)
-          }
-      }
-        function timeChecker () {
-          for (var i=0; i<dayHours.length; i++) {
-            var input=$('input');
-             if (currentHour==dayHours[i]) {
+
+            if (p.value==currentHour) {
                 $(input).addClass("present");
-              } else if (currentHour<=dayHours[i]) { 
+              } else if (dayHours<currentHour) { 
                 $(input).addClass("future");
               } else {
                 $(input).addClass("past");
               }
-            }
           }
+      }
+        // function timeChecker () {
+        //   for (var i=9; i<18; i++) {
+        //     var input=$('input');
+        //     var p =$('p');
+            
+        //     }
+        // }
       inputCreate();
-      timeChecker();
+      // timeChecker();
     })
         
       
