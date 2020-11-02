@@ -85,15 +85,23 @@
               }
           }
         }
-        $("button").on("click", function storeSchedule() {
-          var index=document.getAttribute("data-index");
-          console.log(index.value);
-
-        })
       inputCreate();
+      $("button").on("click", function () {
+          var index=$('input').val();
+          localStorage.setItem("schedule", JSON.stringify(index));
+        })
   })
         
-      
+//   $('body').on('click', 'button', function() {
+
+// var key = $(this).siblings("p").attr("value")
+// console.log(key)
+// var value = $(this).siblings("input").val()
+// console.log(value)
+
+// // setItem
+
+// });
       
     </script>
   </body>
