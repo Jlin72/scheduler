@@ -54,9 +54,8 @@
         
         // this next function will be used to create the scheduler
         function inputCreate () {
-          for (var i=9; i<18; i+=1) {
+          for (i=9; i<18; i+=1) {
             // this next line of code will be used to create the p, input and button element
-            schedules=schedule[i];
             var input=$("<input>");
             var button=$("<button>");
             var dayHours=date.set('hour', i);
@@ -65,6 +64,7 @@
             // this will be used to add the dayHours to the p html element
             $(p).text(dayHoursFormat);
             $(p).attr("value", i)
+            $(p).attr("id", "hours");
             // using the loop we will create a data index for each input
             $(input).attr("data-index", i);
             $(input).attr("type", "text");
@@ -84,9 +84,14 @@
                 $(input).addClass("past");
               }
           }
-      }
+        }
+        $("button").on("click", function storeSchedule() {
+          var index=document.getAttribute("data-index");
+          console.log(index.value);
+
+        })
       inputCreate();
-    })
+  })
         
       
       
