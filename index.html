@@ -54,7 +54,7 @@
         
         // this next function will be used to create the scheduler
         function inputCreate () {
-          for (i=9; i<18; i+=1) {
+          for (i=9; i<18; i++) {
             // this next line of code will be used to create the p, input and button element
             var input=$("<input>");
             var button=$("<button>");
@@ -76,9 +76,12 @@
             // lastly this next line of code will be used to append the input to the div element id as divRow
             $(divRow).append(p,input, button)
 
-            if (p.value==currentHour) {
+            // this if will check for the time and based on the time it will changed the input html element class
+            var dayHoursInteger=parseInt(dayHours, 10);
+            var currentHourInteger=parseInt(currentHour, 10);
+            if (dayHoursInteger==currentHourInteger) {
                 $(input).addClass("present");
-              } else if (dayHours<currentHour) { 
+              } else if (dayHoursInteger<currentHour) { 
                 $(input).addClass("future");
               } else {
                 $(input).addClass("past");
@@ -87,9 +90,13 @@
         }
       inputCreate();
       $("button").on("click", function () {
-          var index=$('input').val();
-          localStorage.setItem("schedule", JSON.stringify(index));
-          console.log(index);
+          for (i=9; i<18; i++){
+          var inputAttr=$("input").attr("data-index", i)
+          var schedule=inputAttr[i];
+          var inputIndex=schedule.val();
+          localStorage.setItem("schedule", JSON.stringify(inputIndex));
+          console.log(inputIndex);
+        } 
         })
   })
         
