@@ -92,7 +92,7 @@
       $("button").on("click", function () {
           for (i=9; i<18; i++){
           var inputAttr=$("input").attr("data-index", i)
-          var schedule=inputAttr[i];
+          var schedule=inputAttr;
           var inputIndex=schedule.val();
           localStorage.setItem("schedule", JSON.stringify(inputIndex));
           console.log(inputIndex);
