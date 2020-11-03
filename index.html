@@ -90,15 +90,15 @@
         }
       inputCreate();
       $("button").on("click", function () {
-        var buttonSiblings = $(this).siblings('input');
-          $(buttonSiblings).each(function () {
-            var inputVal=$(this).val();
+        var buttonSiblings = $(this).siblings('input').attr("data-index", i);
+        var inputVal=buttonSiblings.val();
+        for (i=9;i<18;i++) {
             console.log(inputVal);
             schedule=inputVal
-            localStorage.setItem("schedule", JSON.stringify(schedule));
+            console.log(schedule, "this is the schedule");
+            localStorage.setItem("schedule", schedule);
+          }
           })
-        } 
-        )
   })
         
 //   $('body').on('click', 'button', function() {
@@ -117,6 +117,16 @@
           // console.log(inputIndex);
         
 // });
+
+// somewhat working button
+// var buttonSiblings = $(this).siblings('input');
+        //   $(buttonSiblings).each(function () {
+        //     var inputVal=$(this).val();
+        //     console.log(inputVal);
+        //     schedule=inputVal
+        //     console.log(schedule, "this is the schedule");
+        //     localStorage.setItem("schedule", schedule);
+        //   })
       
     </script>
   </body>
