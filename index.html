@@ -47,7 +47,7 @@
           // this var will be used later to check the time
         var currentHour= date.get('hour');
         // empty array named schedule will be used to store the the todos
-        var schedule=[];
+        var schedule="";
         $("#currentDay").text(date.format('dddd, MMMM Do YYYY'));
         $(".container").append(divRow);
         $(divRow).addClass("class: row time-block;")
@@ -90,14 +90,15 @@
         }
       inputCreate();
       $("button").on("click", function () {
-          for (i=9; i<18; i++){
-          var inputAttr=$("input").attr("data-index", i)
-          var schedule=inputAttr;
-          var inputIndex=schedule.val();
-          localStorage.setItem("schedule", JSON.stringify(inputIndex));
-          console.log(inputIndex);
+        var buttonSiblings = $(this).siblings('input');
+          $(buttonSiblings).each(function () {
+            var inputVal=$(this).val();
+            console.log(inputVal);
+            schedule=inputVal
+            localStorage.setItem("schedule", JSON.stringify(schedule));
+          })
         } 
-        })
+        )
   })
         
 //   $('body').on('click', 'button', function() {
@@ -108,7 +109,13 @@
 // console.log(value)
 
 // // setItem
-
+   // for (i=9; i<18; i++){
+          // var inputAttr=$("input").attr("data-index", i)
+          // var schedule=inputAttr;
+          // var inputIndex=schedule.val();
+          // localStorage.setItem("schedule", JSON.stringify(inputIndex));
+          // console.log(inputIndex);
+        
 // });
       
     </script>
