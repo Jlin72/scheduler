@@ -1,4 +1,4 @@
-# day scheduler app
+# Day scheduler app
 The purpose of this repository is to contain all the code that was used to create a day scheduler app for browsers like google chrome and firefox.
 This scheduler app was created as a way to help my fellow employees manage their time better. Since, we are all busy and having something that can helps us mangae time will help a lot. If you are reading this you are also welcome to use this app for whatever purpose you need it for.
 # How to use
